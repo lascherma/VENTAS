@@ -1,0 +1,403 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style></style>
+      <script type="text/javascript">
+          
+      (function(document) {
+      'use strict';
+
+      var LightTableFilter = (function(Arr) {
+
+      var _input;
+
+      function _onInputEvent(e) {
+      _input = e.target;
+      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+      Arr.forEach.call(tables, function(table) {
+      Arr.forEach.call(table.tBodies, function(tbody) {        
+      Arr.forEach.call(tbody.rows, _filter);
+      });
+        });
+        }
+
+      function _filter(row) {
+      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+      return {
+      init: function() {
+      var inputs = document.getElementsByClassName('light-table-filter');
+      Arr.forEach.call(inputs, function(input) {
+      input.oninput = _onInputEvent;
+      });
+        }
+        };
+      })(Array.prototype);
+
+      document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+          LightTableFilter.init();
+        }
+      });
+
+      })(document);
+    </script>
+  </head>
+
+  <style type="text/css">
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@200;400;500&family=Open+Sans:wght@300;400;800&family=Oswald:wght@400;500&display=swap');
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+    }
+    
+    table{
+      text-align: center;
+    }
+
+    td{
+      font-size: 12px;
+    }
+
+    h3{
+      text-transform: uppercase;
+    }
+
+    .title{  
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #0101df;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    th,tr,td{
+      border:1px solid #000;
+      width:375px;
+      height:45px;
+      vertical-align:middle;
+      text-align:center;
+    }
+
+    #inferior{
+      width: 100%;
+      color: #fff;
+      background: #000;
+      position:fixed; 
+      left:0px; 
+      right:0px;
+      bottom:0px;
+      -index:0;
+      background: #fff;
+
+    }
+
+    .inferior th{
+      background: #000;
+    }
+
+
+
+  </style>
+
+
+  <body>
+
+    <div class="container">
+      <div style="height:50px"></div>
+        <div class="title">
+          DISTRIBOCA
+          <h6>Consulta de Precios</h6><hr>
+        </div>
+
+      <input class="form-control col-md-3 light-table-filter" data-table="order-table" type="text" placeholder="Buscar...">
+      <hr>
+
+      <table class="table table-bordered order-table">
+        <thead>
+          <tr>
+            <th>Artículo</th>
+            <th>Ref: $ Ud</th>
+            <th>Ref: $ Caj</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>Diplomático Mantuano 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Diplomático Reserva Exclusiva 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Diplomático Ambassador 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Diplomático Single Vintage 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Diplomático Planas 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Canaima Dorado 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Canaima Dorado 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Canaima Blanco 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Cinco Estrella Dorado 0.35</td>
+          <td>$</td>
+          <td>$</td> 
+        </tr>
+        <tr>
+          <td>Cinco Estrella Dorado 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Cinco Estrella Dorado 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Cinco Estrella Dorado 1.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Cinco Estrella Blanco 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Cinco Estrella Blanco 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Kañadorado 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Naiguatá Coconut Rum 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Rumbaron 0.98</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Rumbaron 0.98</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Rumbaron 0.98</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Queen House 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <tr>
+          <td>Queen House Diamond 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Gran Lord 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Majestic 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Manager´s 0.35</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Manager´s 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Manager´s 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Manager´s 1.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Antañon 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Chemineaud 0.25</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Chemineaud 0.35</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Chemineaud 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Chemineaud 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Chemineaud 1.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Glacial Guaraná 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Glacial Tropi Mix 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Stanislaff 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Stanislaff 1.00</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Xtreme 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Tea Act 1773 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Topping Crema-Vainilla 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Topping Caramelo 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Aranshe 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Hacienda Saruro 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Kafe Noir 0.75</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Sello de Oro 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Corobore 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Tepuy 145ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>Jaspe 0.70</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Aguakina 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Cola 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Ginger Ale 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Ginger Beer 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Limón 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Premium Mixers 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Soda 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+        <td>9° Grados Sparkling 200ml</td>
+          <td>$</td>
+          <td>$</td>
+        </tr>
+      </table>
+
+    </div>
+
+  </div><br /><br />
+
+        <div id="inferior">
+
+        <table class="inferior">
+
+
+        <th><a href="index.recibo.html"><span style="color: white;" class="material-icons-outlined">receipt_long</span></a></th>
+        <th><a href="index.pedido.html"><span style="color: white;" class="material-icons-outlined">list_alt</span></a></th>
+        <th><a href="index.menu.html"><span style="color: white;" class="material-icons-outlined">menu</span></a></th>
+            
+        </table>
+
+        </div>
+
+        </div> 
+
+  </body>
+</html>

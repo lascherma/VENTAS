@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <title>DISTRIBOCA, C.A.</title>
+
+    <script type="text/javascript" src="pedido.js"></script>
+    <script type="text/javascript" src="generarPedido.js"></script>
+    <script type="text/javascript" src="mainPedido.js"></script>
+    <script type="text/javascript" src="consultaPedido.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+
+    <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@200;400;500&family=Open+Sans:wght@300;400;800&family=Oswald:wght@400;500&display=swap');
+       *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body{
+            background: #0B2161;
+            padding: 0 10px;
+        }
+
+        .dados{
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            margin: 20px auto;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+            padding: 30px;
+        }
+
+        .print {
+            display: none;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 30px;
+            width: 1000px;
+        }
+
+        .input{
+            background-color: #fff;
+            width: 100%;
+            height: 38px;
+            outline: none;
+            border: 1px solid #d5dbd9;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 5px;
+            border-color: #0101df;
+            transition: all 0.3s ease;
+        }
+
+        .search_select_box button{
+            background-color: #fff;
+            border-color: #0101df;
+        }
+
+        .seleccione{
+            background-color: #fff;
+            width: 100%;
+            outline: none;
+            border: 1px solid #d5dbd9;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border-color: #000;
+            transition: all 0.3s ease;
+
+        }
+
+        .button-agregar{
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 2px;
+            margin-bottom: 10px;
+            background: #0101df;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+
+        }
+
+        .title{  
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #0101df;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .title1{
+            font-size: 16px;
+            font-weight: 700;
+            padding: 2px;
+            margin-bottom: 25px;
+            background: #DF7401;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        h4{
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        h5{
+            font-size: 19px;
+            font-family: 'Arial', sans-serif;
+        }
+
+       
+        /*tabla*/
+
+        table{border-collapse:collapse;}
+        th,tr,td{
+            border:1px solid #000;
+            width:375px;
+            height:45px;
+            vertical-align:middle;
+            text-align:center;
+        }
+
+        .miTabla{
+          font-size: 10px;
+        }
+
+        .consulta{
+            font-size: 10px;
+        }
+
+        .buscador-consulta{
+            width: 98%;
+        }
+
+        .date{
+            width: 340px;
+            position: fixed;
+            bottom: 1020px;
+            right: 20.7px;
+        }
+
+        .img{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            border-radius: 30px;
+        }
+
+        .assinatura{
+            color: black;
+            border-top: 1px solid black;
+            text-align: center;
+        }
+
+        @media print{
+            .print{
+                display: block;
+            }
+
+            .dados{
+                display: none;
+            }
+        }
+
+        /*CONSULTA*/
+
+
+
+
+        button {
+            background-color: #47a386;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 14px;
+            padding: 10px 25px;
+        }
+
+        .modal-container {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.3);
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            pointer-events: none;
+            opacity: 0;  
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            transition: opacity 0.3s ease;
+        }
+
+        .show {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .modal {
+            background-color: #fff;
+            width: 600px;
+            max-width: 100%;
+            padding: 30px 50px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .modal h1 {
+            margin: 0;
+        }
+
+        .modal p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /*Barra Inferior*/
+
+        #inferior{
+            width: 100%;
+            color: #fff;
+            background: #000;
+            position:fixed; 
+            left:0px; 
+            right:0px;
+            bottom:0px;
+            -index:0;
+            background: #fff;
+        }
+
+        .inferior th{
+            background: #000;
+        }
+
+    </style> 
+
+</head> 
+<body>
+
+  <div class="dados">
+
+        <div class="title">
+          DISTRIBUIDORA
+          <h5>El Bodegón del Catador C.A.</h5><hr>
+        </div>
+
+        
+        <h4>Vendedor</h4>
+        <div class="search_select_box">
+        <select id="idVendedor" name="idVendedor" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="XXXXXXXXXX">XXXXXXXXXX</option>
+        </select></div><br />
+
+        <h4>Nombre / Raz. Soc.</h4>
+        <div class="search_select_box">
+        <select id="idCodigo" name="cosa" onchange="cambia()" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione
+              <option value="C1822/EL BODEGÓN DE MONCHO J&L C.A.">EL BODEGÓN DE MONCHO J&L C.A.
+              <option value="C926">BODEGÓN COSTA AZUL C.A.
+        </select></div><br />
+
+        <h4>Tipo de Venta</h4>
+        <div class="search_select_box">
+        <select id="idVenta" name="idVenta" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="Credito">Credito</option>
+              <option value="Contado">Contado</option>
+        </select></div><br />
+
+        <h4>Fecha</h4>
+        <input id="idFecha" type="date" class="input" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/><br /><br />
+
+        <button id="open">
+            Precios
+        </button>
+
+        <div id="modal_container" class="modal-container">
+        <div class="modal">
+        <h3>Consulta de Precios</h3>
+
+        <center><form name="consulta" action="#">
+            <div class="search_select_box">
+            <select class="w-100" data-live-search="true" name="cosa" onchange="cambia()">
+                <option value="0">Seleccione
+                <option value="1">Diplomático Mantuano
+                <option value="2">Diplomático Reserva Exclusiva
+                <option value="3">Diplomático Ambassador
+                <option value="4">Diplomático Single Vintage
+                <option value="4">Diplomático Planas
+                <option value="4">Canaima Dorado
+                <option value="4">Canaima Blanco
+                <option value="4">Cinco Estrella Dorado
+                <option value="4">Cinco Estrella Blanco
+                <option value="4">Kañadorado
+                <option value="4">Naiguatá Coco Rum
+                <option value="4">Rumbaron
+                <option value="4">Queen House
+                <option value="4">Queen House Diamond
+                <option value="4">Gran Lord
+                <option value="4">Majestic
+                <option value="4">Manager's
+                <option value="4">Manager's Special Edition
+                <option value="4">Antañon
+                <option value="4">Chemineaud
+                <option value="4">Glacial Guaraná
+                <option value="4">Glacial Tropical Mix
+                <option value="4">Stanislaff
+                <option value="4">Tea Act 1773
+                <option value="4">Topping Crema-Vainilla
+                <option value="4">Topping Caramelo
+                <option value="4">Aranshe
+                <option value="4">Hacienda Saruro
+                <option value="4">Kafe Noir
+                <option value="4">Sello de Oro
+                <option value="4">Corobore
+                <option value="4">Tepuy
+                <option value="4">Jaspe
+                <option value="4">9° Grados Aguakina
+                <option value="4">9° Grados Cola
+                <option value="4">9° Grados Ginger Ale
+                <option value="4">9° Grados Ginger Beer
+                <option value="4">9° Grados Limón
+                <option value="4">9° Grados Premium Mixers
+                <option value="4">9° Grados Soda
+                <option value="4">9° Grados Sparkling
+            </select></div><br />
+
+            
+            <select class="input" name="opt">
+                <option value="-">-
+            </select>   
+            
+        </form></center>
+
+        <button id="close">Cerrar</button>
+        </div>
+        </div>
+
+        <div class="title1">
+            Datos del Documento
+        </div>
+
+        <h4>Articulo</h4>
+        <div class="search_select_box">
+        <select id="nombre" name="nombre" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="-----">-----</option>
+              <option value="DIPLOMÁTICO MANTUANO">DIPLOMÁTICO MANTUANO</option>
+              <option value="DIPLOMÁTICO RESERVA EXCLUSIVA">DIPLOMÁTICO RESERVA EXCLUSIVA</option>
+              <option value="DIPLOMÁTICO AMBASSADOR">DIPLOMÁTICO AMBASSADOR</option>
+              <option value="DIPLOMÁTICO SINGLE VINTAGE">DIPLOMÁTICO SINGLE VINTAGE</option>
+              <option value="DIPLOMÁTICO PLANAS">DIPLOMÁTICO PLANAS</option>
+        </select></div><br />
+
+        <h4>Contenido</h4>
+        <div class="search_select_box">
+        <select id="apellidos" name="apellidos" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="-----">-----</option>
+              <option value="0.35 L">0.35 L</option>
+              <option value="0.70 L">0.70 L</option>
+              <option value="0.75 L">0.75 L</option>
+              <option value="0.98 L">0.98 L</option>
+              <option value="1.00 L">1.00 L</option>
+              <option value="1.75 L">1.75 L</option>
+        </select></div><br />
+
+        <h4>Unidad</h4>
+        <div class="search_select_box">
+        <select id="telefono" name="telefono" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="-----">-----</option>
+              <option value="BOTELLA">BOTELLA</option>
+              <option value="CAJA">CAJA</option>
+        </select></div><br />
+
+        <h4>Cantidad</h4>
+        <input id="direccion" type="number" class="input"/><br /><br />
+
+        <input class="button-agregar" type="button" onclick="agregarValores();" value="Agregar"><br />
+
+
+        <table class="miTabla" id="miTabla">
+          <thead>
+            <tr>
+              <td><strong>Articulo</strong></td>
+              <td><strong>Contenido</strong></td>
+              <td><strong>Unidad</strong></td>
+              <td><strong>Cantidad</strong></td>
+              <th><span class="material-icons-outlined">remove_shopping_cart</span></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+
+        <div id="inferior">
+
+        <table class="inferior">
+            <th><span onclick="generarPedido()" class="material-icons-outlined">done</span></th>
+            <th><span class="material-icons-outlined">whatsapp</span></th>
+            <th><a href="index.pedido.html"><span style="color: white;" class="material-icons-outlined">sync</span><a></th>
+            <th><a href="index.menu.html"><span style="color: white;" class="material-icons-outlined">menu</span><a></th>
+            
+        </table>
+
+        </div>
+
+      </div>
+
+      <div class="print">
+
+        <img src="img/logo1.png" class="img"> DISTRIBOCA, C.A. Av. Cuatricentenaria - Edif. El Catador - Piso P.B. - Sector el Cambio - Barinas Edo. Barinas.<hr style="height:1px; border:none;color:#333; background-color:#333;" /><div class="assinatura"></div><br />
+
+
+        <h1>Orden de Pedido</h1>
+        <table class="date">
+           <thead>
+        <tr>     
+            <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td><span id="pedido_fecha"></span></td>
+        </tr>
+        </table><br />
+       
+        
+        <h3>Vendedor: <span id="pedido_vendedor"></span></h3>
+        <h3>Código N°: <span id="pedido_codigo"></span></h3>
+        <h3>Tipo de Venta: <span id="pedido_venta"></span></h3><br />
+        
+
+        <h3>Pedido</h3><br />
+        <table>
+           <thead>
+        <tr>
+            <th>Articulo</th>
+            <th>Contenido</th>
+            <th>Unidad</th>
+            <th>Cantidad</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td><span id="pedido_articulo"></span></td>
+            <td><span id="pedido_contenido"></span></td>
+            <td><span id="pedido_unidad"></span></td>
+            <td><span id="pedido_cantidad"></span></td>
+        </tr>
+        </table><br /><br />
+
+        <div class="assinatura">Distribuidora El Bodegón del Catador, C.A. Rif: J-31710083-2</div>   
+    </div>
+        
+      </div>
+ 
+</body>
+
+
+<script type="text/javascript">
+
+    const open = document.getElementById('open');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+
+    open.addEventListener('click', () => {
+    modal_container.classList.add('show');  
+    });
+
+    close.addEventListener('click', () => {
+    modal_container.classList.remove('show');
+    });
+
+    $(document).ready(function(){
+        $('.search_select_box select').selectpicker();
+    })
+
+</script>
+</html>

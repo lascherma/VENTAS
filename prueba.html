@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <title>DISTRIBOCA, C.A.</title>
+
+    <script type="text/javascript" src="mainRecibo.js"></script>
+    <script type="text/javascript" src="generarRecibo.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    
+    <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@200;400;500&family=Open+Sans:wght@300;400;800&family=Oswald:wght@400;500&display=swap');
+       *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(rgba(0, 0, 0, 0.425),rgba(0, 0, 0, 0.425)),url("img/licor444.png") no-repeat center/cover;
+            padding: 0 10px;
+        }
+
+        .dados{
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            margin: 20px auto;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+            padding: 30px;
+        }
+
+        .print {
+            display: none;
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 30px;
+            width: 1000px;
+        }
+
+        h1{
+            text-align: left;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+
+        .title{
+            font-size: 16px;
+            font-weight: 700;
+            padding: 2px;
+            margin-bottom: 25px;
+            background: linear-gradient(rgba(0, 0, 0, 0.425),rgba(0, 0, 0, 0.425)),url("img/licor444.png") no-repeat center/cover;
+            border-radius: 3px;
+            border: 3px solid #0101df;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        h3{
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+
+        h4{ 
+            font-family: 'Oswald', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .metodo{
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        h5{
+            font-size: 17px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h6{
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+      
+        .input{
+            background-color: #fff;
+            width: 100%;
+            height: 38px;
+            outline: none;
+            border: 1px solid #d5dbd9;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 5px;
+            border-color: #0101df;
+            transition: all 0.3s ease;
+        }
+
+        .search_select_box button{
+            background-color: #fff;
+            border-color: #0101df;
+        }
+
+        .input-button{
+            width: 100%;
+            padding: 5px 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 5px solid #000;
+            border-radius: 5px;
+            background:  #FE2E2E;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /*tabla*/
+
+        table{border-collapse:collapse;}
+        th,tr,td{
+             border:1px solid #000;
+             width:375px;
+             height:45px;
+             vertical-align:middle;
+             text-align:center;
+             font-size: 20px;
+        }
+
+        .date{
+            width: 340px;
+            position: fixed;
+            bottom: 1138px;
+            right: 45px;
+        }
+
+        .text1{
+            font-size: 17px;
+            position: absolute;
+            bottom: 1322px;
+            right: 55px;
+        }
+
+        .txt{
+            font-size: 17;
+            position: absolute;
+            bottom: 425px;
+            right: 300px;
+        }
+
+        p{
+            font-size: 23px;
+        }
+
+        .textarea{
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+            height: 100px;
+            min-height: 100px;
+            max-height: 100px;
+            outline: none;
+            border: 1px solid #d5dbd9;
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 3px;
+            border-color: #0101df;
+            transition: all 0.3s ease;
+        }
+
+        .img{
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            border-radius: 30px;
+        }
+
+        .assinatura{
+            color: black;
+            border-top: 1px solid black;
+            text-align: center;
+        }
+
+        hr{
+            color: black;
+            border-top: 1px solid black;
+        }
+
+        @media print{
+            .print{
+                display: block;
+            }
+
+            .dados{
+                display: none;
+            }
+        }
+
+        /*PRONTO PAGO*/
+
+        .modal{
+            width: 100%;
+            height: 110vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal{
+            position: fixed;
+            top:  -82px;
+            left: 0;
+            background: rgba(0,0,0,0.5);
+            transition: all 500ms ease;
+            opacity: 0;
+            visibility: hidden;
+
+        }
+        #btn-modal:checked ~ .modal{
+            opacity: 1;
+            visibility: visible;
+        } 
+        .contenedor{
+            width: 400px;
+            height: 420px;
+            margin: auto;
+            background: #fff;
+            box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
+            transition: all 500ms ease;
+            position: relative;
+            transform: translateY(-30%);
+
+        }
+        #btn-modal:checked ~ .modal .contenedor{
+            transform: translateY(0%);
+        } 
+        .contenedor header{
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            padding: 10px;
+            background:  #2E9AFE;
+            color: #fff;
+        }
+        .contenedor label{
+            text-transform: uppercase;
+            font-weight: 700;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .contenido{
+            width: 100%;
+            padding: 10px; 
+        }
+        .contenido h3{
+            margin-bottom: 10px;
+        }
+        .contenido p{
+            margin-bottom: 7px;
+        }
+        #btn-modal{
+            display: none; 
+        }
+        .lbl-modal{
+            background: #000;
+            padding: 6px 6px;
+            border-radius: 30px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 100px;
+            right: 15px;
+            transition: all 0.2s;
+        }
+
+        .lbl-modal:hover{
+            transform: scale(0.9);
+        }
+
+        .lbl-modal:active{
+            transform: scale(0.8);
+        }
+
+        img{
+            border-radius: 30px;
+        }
+        @media only screen and (min-width:320px) and (max-width:768px){
+        .contenedor{
+            width: 95%;
+        }
+        }
+
+        /*MÉTODO PAGO*/
+
+        .iconometodo{
+            width: 170px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #fff;
+            background: #2E9AFE;
+            border: 3px solid #0101df;
+            padding: 6px 6px;
+            border-radius: 5px;
+            position: fixed;
+            bottom: -45px;
+            left: 9px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .iconometodo:hover{
+            transform: scale(0.9);
+        }
+
+        .iconometodo:active{
+            transform: scale(0.8);
+        }
+
+        .metododepago{
+            width: 230px;
+            height: 430px;
+            position: fixed;
+            bottom: 0px;
+            right: 5px;
+            background:white;
+            padding: 5px 10px;
+            display: none;
+            box-shadow: 1px 7px 25px rgba(0,0,0,0.6);
+        }
+
+        .title2{
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            background: #2E9AFE;
+            padding: 10px;
+            display: block;
+            text-align: left;
+            width: 230px;
+            height: 30px;
+            box-sizing: border-box;
+            line-height: 10px;
+            position: fixed;
+            bottom: 392px;
+            right: 5px;
+        }
+
+        .entrarysalir{
+            display: block;
+        }
+
+        /*Barra Inferior*/
+
+        #inferior{
+            width: 100%;
+            color: #fff;
+            background: #000;
+            position:fixed; 
+            left:0px; 
+            right:0px;
+            bottom:0px;
+            -index:0;
+            background: #fff;
+        }
+
+        .inferior th{
+            background: #000;
+        }
+
+        input{
+            background-color: #fff;
+        }
+
+        option{
+            font-size: 13px;
+        }
+
+      </style>
+</head>
+<body>
+
+  <div class="dados">
+
+        <h4>Vendedor</h4>
+        <div class="search_select_box">
+        <select id="idVendedor" name="idVendedor" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="XXXXXXXXXX">XXXXXXXXXX</option>
+        </select></div><br />
+
+        <h4>Nombre / Raz. Soc.</h4>
+        <div class="search_select_box">
+        <select id="idCodigo" name="cosa" onchange="cambia()" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione
+              <option value="C1822/EL BODEGÓN DE MONCHO J&L C.A.">EL BODEGÓN DE MONCHO J&L C.A.
+              <option value="C926/BODEGÓN COSTA AZUL C.A.">BODEGÓN COSTA AZUL C.A.
+        </select></div><br />
+
+        <h4>Lugar</h4>
+        <div class="search_select_box">
+        <select id="idLugar" name="idLugar" class="w-100" data-live-search="true">
+              <option value="Seleccione">Seleccione</option>
+              <option value="Apure">Apure</option>
+              <option value="Barinas">Barinas</option>
+              <option value="Merida">Merida</option>
+              <option value="Trujillo">Trujillo</option>
+              <option value="Portuguesa">Portuguesa</option>
+        </select></div><br />
+
+        <h4>Fecha</h4>
+        <input id="idFecha" type="date" class="input" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/><br /><br />
+
+        <h4>Recibo N°</h4>
+        <input id="idRecibo" type="number" class="input"/><br /><br />
+
+        <div class="title">
+            Datos del Documento
+        </div>
+
+        <h4>Fecha</h4>
+        <input id="idDate" type="date" class="input" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/><br /><br />
+
+        <h4>Factura N°</h4>
+        <input id="idNumero" type="number" class="input"/><br /><br />
+
+        <h4>Monto Bs.</h4>
+        <input id="idMonto" name="idMonto" oninput="montoProntopago()"  type="number" class="input"/><br /><br />
+
+        <div class="title">
+            Observaciones
+        </div>
+
+        <textarea id="idTextarea" class="textarea" placeholder="Observación"/></textarea><br /><br />
+
+
+        <div id="inferior">
+
+        <table class="inferior">
+
+
+            <th><a href="index.cobro.html"><span style="color: white;" class="material-icons-outlined">undo</span><a></th>
+            <th><a href="index.menu.html"><span style="color: white;" class="material-icons-outlined">home</span><a></th>                                                     <th><a href=""><span onclick="generarRecibo()" style="color: white;" class="material-icons-outlined">task_alt</span></a></th>
+            <th><a href="https://wa.me/584245077956?text=DISTRIBUIDORA%20EL BODEGÓN DEL CATADOR%20%20%20%20" target="_blank"><span style="color: white;" class="material-icons-outlined">whatsapp</span></a></th>
+            
+        </table>
+
+        </div>
+
+
+        <!-- Pronto Pago -->
+
+        <input type="checkbox" id="btn-modal">
+        <label for="btn-modal" class="lbl-modal"><img src="img/pronto.png" width="50px" height="50px"></label>
+        <div class="modal">
+        <div class="contenedor">
+        <header>Pronto Pago</header>
+        <label for="btn-modal">X</label>
+        <div class="contenido">
+
+        <input id="idBs" name="idBs" type="number" class="input" placeholder="Monto Bs."><br /><br />
+
+        <input id="idDescuento" name="idDescuento" type="number" class="input" placeholder="% de Descuento"><br /><br/>
+
+        <button onclick="calcular();" id="btn_calcula" name="btn_calcula" class="input-button">Calcular</button><br /><br />
+
+        <input id="idPronto" name="idPronto" type="number" class="input" readonly placeholder="Pronto Pago"><br /><br />
+
+        <input id="idImporte" name="idImporte" type="number" class="input" readonly placeholder="Importe Neto Recibido"><br /><br />
+
+        <input id="idIgual" name="idIgual" type="number" class="input" readonly placeholder="Total Igual al Importe"><br /><br />
+
+
+        <!-- Método de Pago -->
+
+        <form id="metododepago" action="" class="metododepago">
+        <h4 class="title2">Método de Pago</h4><br /><br />
+        
+        <div class="search_select_box">
+        <select id="idCondicion" name="idCondicion" class="w-100" data-live-search="true">
+              <option value="Seleccione">Condición de Pago</option>
+              <option value="Cancela">Cancela</option>
+              <option value="Abona">Abona</option>
+        </select></div><br />
+
+        <div class="search_select_box">
+        <select id="idForma" name="idForma" class="w-100" data-live-search="true">
+              <option value="Seleccione">Forma de Pago</option>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Abona">Pago Móvíl</option>
+              <option value="Abona">Efectivo</option>
+        </select></div><br />
+
+        <div class="search_select_box">
+        <select id="idBanco" name="idBanco" class="w-100" data-live-search="true">
+              <option value="Seleccione">Banco</option>
+              <option value="Banco Provincial">Banco Provincial</option>
+              <option value="Banco Banesco">Banco Banesco</option>
+              <option value="Banco Mercantil">Banco Mercantil</option>
+        </select></div><br />
+
+        <input id="idReferencia" type="number" class="input" placeholder="Referencia N°" /><br /><br />
+
+        <input id="idRestante" type="number" class="input" placeholder="Saldo Restante"/><br /><br/>
+
+        <input id="idGeneral" type="number" class="input" placeholder="Saldo General" /><br /><br />
+
+        </form>
+        </div>
+        <button id="iconometodo" class="iconometodo">Método de Pago</button>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+
+        </div>      
+ 
+
+    <div class="print">
+
+        <img src="img/logo1.png" class="img"><div class="assinatura"></div><br />
+
+        <h1>Recibo de Cobro</h1>
+        <table class="date">
+           <thead>
+        <tr>
+            <th>Lugar</th>
+            <th>Fecha</th>
+            <th>Recibo N°</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td><span id="recibo_lugar"></span></td>
+            <td><span id="recibo_fecha"></span></td>
+            <td><span id="recibo_recibo"></span></td>
+        </tr>
+        </table><br />
+       
+        
+        <h3>Vendedor: <span id="recibo_vendedor"></span></h3>
+        <h3>Código N°: <span id="recibo_codigo"></span></h3>
+        
+
+        <h3><u>Datos del Documento Fiscal</u></h3>
+        <p>Fecha: <span id="recibo_date"></span></p>
+        <p>Factura N°: <span id="recibo_numero"></span></p>
+        <p>Monto Bs.: <span id="recibo_monto"></span></p>
+
+        <h3><u>Pronto Pagó</u></h3>
+        <p>Descuento %: <span id="recibo_descuento"></span></p>
+        <p>Pronto Pagó: <span id="recibo_pronto"></span></p>
+
+        <h3><u>Pagós é Importes</u></h3><br />
+        <table>
+           <thead>
+        <tr>
+            <th>Condición de pagó</th>
+            <th>Forma de Pagó</th>
+            <th>Banco</th>
+            <th>Referencia N°</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td><span id="recibo_condicion"></span></td>
+            <td><span id="recibo_forma"></span></td>
+            <td><span id="recibo_banco"></span></td>
+            <td><span id="recibo_referencia"></span></td>
+        </tr>
+        </table><br />
+
+        <table>
+           <thead>
+        <tr>
+            <th>Importe Neto Recibido</th>
+            <th>Saldo Restante</th>
+            <th>Saldo General</th>
+            <th>Total Igual al Importe</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td><span id="recibo_importe"></span></td>
+            <td><span id="recibo_restante"></span></td>
+            <td><span id="recibo_general"></span></td>
+            <td><span id="recibo_igual"></span></td>
+        </tr>
+        </table><br />
+
+        <h3>Observaciones: <span id="recibo_textarea"></span></h3><br /><br />
+
+
+        <div class="assinatura"><h6 class="text1">DISTRIBOCA, C.A. Av. Cuatricentenaria - Edif. El Catador - Piso P.B. - Sector el Cambio - Barinas Edo. Barinas.</h6><h6 class="txt">Distribuidora El Bodegón del Catador, C.A. Rif: J-31710083-2</h6></div><br />   
+    </div>
+
+  <script>
+
+        // Monto Visual Paralelo..........
+
+        function montoProntopago() {
+            let monto = document.getElementById("idMonto").value;
+    
+            document.getElementById("idBs").value = monto;
+        }
+
+
+        // Calcular Descuento
+
+        function calcular(){
+        var monto_ini =0;
+        var desc =0;
+        var imp_desc = 0;
+        var total =0;
+
+        monto_ini = document.getElementById('idBs').value;
+        desc = document.getElementById('idDescuento').value;
+
+        imp_desc = (monto_ini * desc)/100;
+        document.getElementById('idPronto').value=imp_desc;
+        total = monto_ini - imp_desc
+        document.getElementById('idImporte').value=total;
+        document.getElementById('idIgual').value=total;
+        console.log(total);
+        }
+
+        $(document).ready(function(){
+        $('.search_select_box select').selectpicker();
+        })
+
+
+        // Método de Pago
+
+        var iconometodo = document.querySelector('#iconometodo');
+        var metododepago = document.getElementById('metododepago');
+
+        
+        iconometodo.addEventListener('click' , function(){
+            metododepago.classList.toggle('entrarysalir')
+        })
+
+
+
+        function generarRecibo() {
+
+        document.getElementById('recibo_vendedor').innerHTML = document.getElementById('idVendedor').value;
+        document.getElementById('recibo_codigo').innerHTML = document.getElementById('idCodigo').value;
+        document.getElementById('recibo_lugar').innerHTML = document.getElementById('idLugar').value;
+        document.getElementById('recibo_fecha').innerHTML = document.getElementById('idFecha').value;
+        document.getElementById('recibo_recibo').innerHTML = document.getElementById('idRecibo').value;
+
+        document.getElementById('recibo_date').innerHTML = document.getElementById('idDate').value;
+        document.getElementById('recibo_numero').innerHTML = document.getElementById('idNumero').value;
+        document.getElementById('recibo_monto').innerHTML = document.getElementById('idMonto').value;
+
+
+        document.getElementById('recibo_descuento').innerHTML = document.getElementById('idDescuento').value;
+        document.getElementById('recibo_pronto').innerHTML = document.getElementById('idPronto').value;
+
+        document.getElementById('recibo_condicion').innerHTML = document.getElementById('idCondicion').value;
+        document.getElementById('recibo_forma').innerHTML = document.getElementById('idForma').value;
+        document.getElementById('recibo_banco').innerHTML = document.getElementById('idBanco').value;
+        document.getElementById('recibo_referencia').innerHTML = document.getElementById('idReferencia').value;
+
+
+        document.getElementById('recibo_importe').innerHTML = document.getElementById('idImporte').value;
+        document.getElementById('recibo_restante').innerHTML = document.getElementById('idRestante').value;
+        document.getElementById('recibo_general').innerHTML = document.getElementById('idGeneral').value;
+        document.getElementById('recibo_igual').innerHTML = document.getElementById('idIgual').value;
+
+        document.getElementById('recibo_textarea').innerHTML = document.getElementById('idTextarea').value;
+        window.print();
+           
+        }
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
